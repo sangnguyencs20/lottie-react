@@ -1,22 +1,21 @@
 import React, { useRef, useEffect } from 'react';
-import { Button, StyleSheet, View } from 'react-native';
-import LottieView from 'lottie-react-native';
+import { SafeAreaView, FlatList, StyleSheet } from 'react-native';
+
+import Item from './components/Item';
+import slides from './components/Slides';
 
 export default function App() {
-
   return (
-    <View>
-      <LottieView
-        autoPlay
-        loop
-        style={{
-          width: 300,
-          height: 300,
-          backgroundColor: '#eee',
-        }}
-        // Find more Lottie files at https://lottiefiles.com/featured
-        source={require('./assets/coffee.json')}
+    <SafeAreaView
+      style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+        data={slides}
+        keyExtractor={item => item.id}
+        renderItem={({ item }) => <Item item={item} />}
+        style={{ width: '90%' }}
       />
-    </View>
+    </SafeAreaView>
   );
 }
